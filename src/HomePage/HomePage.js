@@ -10,68 +10,57 @@ import Particles from 'react-particles-js';
 
 export class HomePage extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   // this.myRefStats = React.createRef();
-
-  // }
-
   state = {
     // active: false,  
-    isBoxVisible: true,
+    isBoxVisible: true, // bollean for animation
     color: '#58beff',
     score: 58,
     text: 'Your Score',
     counter: 0,
-    isMenuVisible: true,
-    actions: [],
+    isMenuVisible: true, // bollean for menu
+    actions: ['Menu toggle'],
   }
 
   componentDidMount() {
-    console.log('componentDidMount', this.state)
-    this.startCounter()
+    this.startCounter() //start counter
     const actions = this.loadFromStorage()
-    this.setState({ actions })
+    if(actions )this.setState({ actions }) //loading from storge if exist
   }
 
-  startCounter = () => {
-    //console.log('this.state.counter',this.state.counter)
-    var field = 'counter'
+  startCounter = () => {  
     var counter = 0
     setInterval(() => {
       counter++
-      this.setState({ counter })
-      // console.log('this.state.counter', this.state.counter)
+      this.setState({ counter }) //update counter every 1.5 sec
     }, 1600);
 
   }
 
   toggleMenu = () => {
-    this.setState(prevState => ({ isMenuVisible: !prevState.isMenuVisible }));
-    // const field = 'actions';
-    this.setState({ actions: [...this.state.actions, 'Menu toggle'] }, this.saveToStorage())
-
+    this.setState(prevState => ({ isMenuVisible: !prevState.isMenuVisible })); //toggling menu
+    this.setState({ actions: [...this.state.actions, 'Menu toggle'] }, this.saveToStorage()) //update action arrary
+    this.saveToStorage()
   };
 
   toggleBox = () => {
-    this.setState(prevState => ({ isBoxVisible: !prevState.isBoxVisible }));
-    this.setState({ actions: [...this.state.actions, 'Animation toggle'] }, this.saveToStorage())
+    this.setState(prevState => ({ isBoxVisible: !prevState.isBoxVisible })); //toggling animation
+    this.setState({ actions: [...this.state.actions, 'Animation toggle'] }, this.saveToStorage()) //update action arrary
+    this.saveToStorage()
   };
 
   onStopAnimation = () => {
-    this.setState(prevState => ({ isBoxVisible: false }));
-    this.setState({ actions: [...this.state.actions, 'Animation stoped'] }, this.saveToStorage())
-
+    this.setState(prevState => ({ isBoxVisible: false })); //toggling animation
+    this.setState({ actions: [...this.state.actions, 'Animation stoped'] }, this.saveToStorage()) //update action arrary
+    this.saveToStorage()
   };
 
   onStartAnimation = () => {
-    this.setState(prevState => ({ isBoxVisible: true }));
-    this.setState({ actions: [...this.state.actions, 'Animation started'] }, this.saveToStorage())
-
+    this.setState(prevState => ({ isBoxVisible: true })); //toggling animation
+    this.setState({ actions: [...this.state.actions, 'Animation started'] }, this.saveToStorage()) //update action arrary
+    this.saveToStorage()
   };
 
-
-
+  // update state from inputs
   handleChange = ({ target }) => {
     // change state
     const field = target.name
@@ -80,6 +69,7 @@ export class HomePage extends React.Component {
     this.setState({ [field]: value })
   }
 
+  // update state from inputs and restaring animation
   handleChangeAnimation = ({ target }) => {
     // change state
     const field = target.name
@@ -91,41 +81,40 @@ export class HomePage extends React.Component {
     this.changeAnimationColor(value);
   }
 
+  // change color 
   changeAnimationColor(value) {
     document.documentElement.style.setProperty("--primary", value);
+   
+    //restarting animation
     this.restratAnimation(value);
 
   }
 
+   //restarting animation
   restratAnimation(value) {
     this.setState(prevState => ({ isBoxVisible: !prevState.isBoxVisible }));
     this.setState({ actions: [...this.state.actions, 'Animation toggle'] }, this.saveToStorage())
 
   }
 
+  // save to local
   saveToStorage(key, val) {
     const keyToSave = 'stats';
     const { actions } = this.state
     console.log('save', actions)
-
     localStorage.setItem(keyToSave, JSON.stringify(actions))
   }
 
+   // load from  local
   loadFromStorage(key) {
     const keyToLoad = 'stats';
     var val = localStorage.getItem(keyToLoad)
     console.log('load', val)
-
     return JSON.parse(val)
-  }
-
-  shapeHover(){
-    //document.querySelector("animationStatsContainer").opacity = 1
   }
 
   render() {
     const { isBoxVisible, score, color, text, counter, isMenuVisible, actions } = this.state;
-
 
     return (
       <div className="HomePage">
@@ -149,14 +138,12 @@ export class HomePage extends React.Component {
             <li><button onClick={this.onStopAnimation}>Stop Animation</button></li>
             <li><button onClick={this.onStartAnimation}>Start Animation</button></li>
             <li><button onClick={this.toggleBox}>Toggle Animation</button></li>
-            {/* <input type="color" id="favcolor" name="favcolor" value="#ff0000" /> */}
             <li>Chose color: <input type="color" name="color" value={color} onChange={this.handleChangeAnimation} /></li>
             <li>Change score: <input type="number" name="score" value={score} onChange={this.handleChange} /></li>
             <li>Change text: <input type="text" name="text" value={text} onChange={this.handleChange} /></li>
           </ul>
         </nav>
 
-        {/* <h4>shape goes here</h4> */}
         <div className="shapeContainer">
           <div className="container">
           <Particles  width={'100%'} height={"400px"}
@@ -285,21 +272,22 @@ export class HomePage extends React.Component {
               <span  className={`style ${isBoxVisible ? "style" : "stop-animation"}`}>
               </span>
             </p> 
-            <div className="notification" >{counter}</div>
+           
           </div>
 
-   
-            <div  className="animationStatsContainer">
-              <div>
-                <span className="statsText">Animation status: </span><span>{isBoxVisible ? "Playing" : "Stoped"}</span>
-              </div>
-              <div style={{ color: `${color}` }}>
-                <span className="statsText">Selected color</span>:{color}
-              </div>
-              <div>
-                <span className="statsText">Selected texts:</span><span>{text}</span>
-              </div>
+          <div className="notification" >{counter}</div>
+
+          <div  className="animationStatsContainer">
+            <div>
+              <span className="statsText">Animation status: </span><span>{isBoxVisible ? "Playing" : "Stoped"}</span>
             </div>
+            <div style={{ color: `${color}` }}>
+              <span className="statsText">Selected color</span>:{color}
+            </div>
+            <div>
+              <span className="statsText">Selected texts:</span><span>{text}</span>
+            </div>
+          </div>
 
             <div className="shapeText">
               <span className="score">{score}</span>
@@ -308,8 +296,6 @@ export class HomePage extends React.Component {
           </div>
         </div>
 
-
-        {/* <Animation /> */}
       </div>
     )
   }

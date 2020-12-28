@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/WeingartenHarel/app-stats-pages/static/css/main.894d1080.chunk.css",
+    "main.js": "/WeingartenHarel/app-stats-pages/static/js/main.048ec39a.chunk.js",
+    "main.js.map": "/WeingartenHarel/app-stats-pages/static/js/main.048ec39a.chunk.js.map",
+    "runtime-main.js": "/WeingartenHarel/app-stats-pages/static/js/runtime-main.3438a61f.js",
+    "runtime-main.js.map": "/WeingartenHarel/app-stats-pages/static/js/runtime-main.3438a61f.js.map",
+    "static/js/2.7bdf2b87.chunk.js": "/WeingartenHarel/app-stats-pages/static/js/2.7bdf2b87.chunk.js",
+    "static/js/2.7bdf2b87.chunk.js.map": "/WeingartenHarel/app-stats-pages/static/js/2.7bdf2b87.chunk.js.map",
+    "static/js/3.c3dc2bf9.chunk.js": "/WeingartenHarel/app-stats-pages/static/js/3.c3dc2bf9.chunk.js",
+    "static/js/3.c3dc2bf9.chunk.js.map": "/WeingartenHarel/app-stats-pages/static/js/3.c3dc2bf9.chunk.js.map",
+    "index.html": "/WeingartenHarel/app-stats-pages/index.html",
+    "static/css/main.894d1080.chunk.css.map": "/WeingartenHarel/app-stats-pages/static/css/main.894d1080.chunk.css.map",
+    "static/js/2.7bdf2b87.chunk.js.LICENSE.txt": "/WeingartenHarel/app-stats-pages/static/js/2.7bdf2b87.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/WeingartenHarel/app-stats-pages/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3438a61f.js",
+    "static/js/2.7bdf2b87.chunk.js",
+    "static/css/main.894d1080.chunk.css",
+    "static/js/main.048ec39a.chunk.js"
+  ]
+}

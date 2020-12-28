@@ -1,6 +1,6 @@
 {
   "homepage":"https://github.com/WeingartenHarel/app-stats-pages",
-  "name": "app-stats-react",
+  "name": "app-stats-pages",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
